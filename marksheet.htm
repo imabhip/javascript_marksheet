@@ -1,0 +1,155 @@
+<html>
+<head>
+	<title>Student Marksheet Preparation</title>
+	<style type="text/css">
+	td {
+		font-family:calibri;
+		font-size:15px;
+	}
+	</style>
+	<script language="JavaScript">
+		var mth=0; sci=0; sst=0; lng1=0; lng2=0; tot_mrk=0;
+		function calcTotMarks(){
+			mth=parseInt(document.getElementById('mth_mrk').value);
+			sci=parseInt(document.getElementById('sci_mrk').value);
+			sst=parseInt(document.getElementById('sst_mrk').value);
+			lng1=parseInt(document.getElementById('lng1_mrk').value);
+			lng2=parseInt(document.getElementById('lng2_mrk').value);
+			
+			document.getElementById('lbl1').innerHTML=mth+sci+sst+lng1+lng2;
+		}
+		
+		function getPerformance(){
+			tot_mrk=mth+sci+sst+lng1+lng2;
+			percent_val=tot_mrk/5;
+			
+			document.getElementById('std_name').innerHTML=document.getElementById('std_nm').value;
+			document.getElementById('reg_num').innerHTML=document.getElementById('reg_no').value;
+			document.getElementById('percent_txt').innerHTML=percent_val + "%";
+			
+			if(percent_val<35){
+				document.getElementById('res_txt').innerHTML="FAIL";
+				document.getElementById('res_txt').style.backgroundColor="#fc0303";
+				document.getElementById('res_txt').style.color="#FFF";
+			}else if(percent_val<50){
+				document.getElementById('res_txt').innerHTML="POOR";
+				document.getElementById('res_txt').style.backgroundColor="#fca103";
+				document.getElementById('res_txt').style.color="#FFF";
+			}else if(percent_val<60){
+				document.getElementById('res_txt').innerHTML="AVERAGE";
+				document.getElementById('res_txt').style.backgroundColor="#d2fc03";
+				document.getElementById('res_txt').style.color="#FFF";
+			}else if(percent_val<70){
+				document.getElementById('res_txt').innerHTML="GOOD";
+				document.getElementById('res_txt').style.backgroundColor="#0bfc03";
+				document.getElementById('res_txt').style.color="#FFF";
+			}else if(percent_val<90){
+				document.getElementById('res_txt').innerHTML="VERY GOOD";
+				document.getElementById('res_txt').style.backgroundColor="#018a1a";
+				document.getElementById('res_txt').style.color="#FFF";
+			}else if(percent_val<=100){
+				document.getElementById('res_txt').innerHTML="EXCELLENT";
+				document.getElementById('res_txt').style.backgroundColor="#6500b3";
+				document.getElementById('res_txt').style.color="#FFF";
+			}
+		}
+	</script>
+</head>
+<body bgcolor="#eeeeee">
+	<h2 style="font-family:calibri;text-align:center;margin-top:30px;margin-bottom:30px"><span style="background-color:#3077ba;color:#eded05;padding:0px 8px 2px 8px">STUDENT MARKSHEET GENERATOR</span></h2>
+	<table width="600" align="center" border="0" cellpadding="5" cellspacing="0">
+		<tr>
+			<td style="padding-left:0px">ENTRY WINDOW</td>
+		</tr>
+		<form name="f1" action="">
+		<tr>
+			<td style="padding:15px;background-color:#dddddd;border:1px solid #bbbbbb;vertical-align:top">
+				<table width="100%" cellpadding="2" cellspacing="0" border="0">
+					<tr>
+						<td>Student Name</td>
+						<td colspan="3"><input type="text" name="std_nm" id="std_nm" value="" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Registration No.</td>
+						<td colspan="3"><input type="text" name="reg_no" id="reg_no" value="" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td colspan="3" style="padding-top:10px;padding-bottom:10px">Marks Obtained</td>
+						<td style="padding-top:10px;padding-bottom:10px">Total Marks</td>
+					</tr>
+					<tr>
+						<td>Maths</td>
+						<td><input type="text" name="mth_mrk" id="mth_mrk" value="0" onKeyUp="calcTotMarks();"></td>
+						<td> / 100 </td>
+						<td rowspan="5"style="width:200px;border:1px solid #bbbbbb;background-color:#fff">
+							<table align="center" width="70%" cellpadding="5" cellspacing="0">
+								<tr>
+									<td align="center" width="100%" style="font-size:40px;border-bottom:1px solid #000"><label name="lbl1" id="lbl1">0</label></td>
+								</tr>
+								<tr>
+									<td align="center" style="font-size:40px">500</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>Science</td>
+						<td><input type="text" name="sci_mrk" id="sci_mrk" value="0" onKeyUp="calcTotMarks();"></td>
+						<td> / 100 </td>
+					</tr>
+					<tr>
+						<td>S. Studies</td>
+						<td><input type="text" name="sst_mrk" id="sst_mrk" value="0" onKeyUp="calcTotMarks();"></td>
+						<td> / 100 </td>
+					</tr>
+					<tr>
+						<td>1st Language</td>
+						<td><input type="text" name="lng1_mrk" id="lng1_mrk" value="0" onKeyUp="calcTotMarks();"></td>
+						<td> / 100 </td>
+					</tr>
+					<tr>
+						<td>2nd Language</td>
+						<td><input type="text" name="lng2_mrk" id="lng2_mrk" value="0" onKeyUp="calcTotMarks();"></td>
+						<td> / 100 </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;padding-right:0px">
+				<input type="button" name="btn1" value="SUBMIT" onClick="getPerformance();" style="background-color:#339e31;border:0px;font-weight:bold;color:#fff;padding:7px 15px">
+				<input type="reset" name="btn2" value="CLEAR" style="background-color:#aaa;border:0px;font-weight:bold;color:#fff;padding:7px 15px">
+			</td>
+		</tr>
+		</form>
+		<tr>
+			<td style="padding-left:0px">RESULT PREVIEW WINDOW</td>
+		</tr>
+		<tr>
+			<td style="padding:15px;height:150px;background-color:#dddddd;border:1px solid #bbbbbb">
+				<table width="100%" cellpadding="5" cellspacing="0" border="0">
+					<tr>
+						<td style="background-color:#fff;border:1px solid #bbb;border-right:0px;border-bottom:0px">Student Name</td>
+						<td colspan="2" style="width:70%;background-color:#eee;border:1px solid #bbb;border-bottom:0px">
+						<b><label name="std_name" id="std_name"></label></b>
+						</td>
+					<tr>
+					<tr>
+						<td style="background-color:#fff;border:1px solid #bbb;border-right:0px">Registration No.</td>
+						<td colspan="2" style="width:70%;background-color:#eee;border:1px solid #bbb">
+							<b><label name="reg_num" id="reg_num"></label></b>
+						</td>
+					<tr>
+						<td colspan="2" align="center" style="height:70px;width:50%;background-color:#fff;border:1px solid #bbb;border-top:0px;font-size:45px;font-weight:bold">
+							<label name="percent_txt" id="percent_txt"></label>
+						</td>
+						<td align="center" style="width:50%;background-color:#fff;border:1px solid #bbb;border-top:0px;border-left:0px;font-size:30px;font-weight:bold">
+							<label name="res_txt" id="res_txt" style="padding:5px 20px"></label>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
